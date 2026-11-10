@@ -1,0 +1,91 @@
+{
+  // Çalıştır ve Hata Ayıkla paneli (⇧⌘D) → listeden seç → yeşil ▶
+  // Python ortamı jollin-asistani projesiyle ortak (aynı paketler: google-adk)
+  "version": "0.2.0",
+  "configurations": [
+    {
+      // 🔌 Zaten çalışan sunucuya bağlan (sunucu debugpy ile 5678'de dinliyorsa: bkz. calistir.sh debug)
+      "name": "Org: 🔌 Çalışan sunucuya bağlan (port 5678)",
+      "type": "debugpy",
+      "request": "attach",
+      "connect": { "host": "127.0.0.1", "port": 5678 },
+      "justMyCode": true
+    },
+    {
+      // 🔴 Numaralı durak noktalarıyla: hangi durakları istediğini sorar (liste: org_asistani/debug.py)
+      "name": "Org: 🔴 Duraklarla API sunucusu (React arayüzü için)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "google.adk.cli",
+      "args": ["api_server", "--allow_origins=http://localhost:5173", "--port", "8000", "--no-reload", "."],
+      "python": "${workspaceFolder}/../jollin-asistani/.venv/bin/python",
+      "cwd": "${workspaceFolder}",
+      "env": { "ORG_DEBUG": "${input:duraklar}" },
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      // 🔴 Kota harcamadan: test_tools.py tool'ları ve callback'leri modelsiz çağırır, duraklar aynen çalışır
+      "name": "Org: 🔴 Duraklarla modelsiz test (kota harcamaz)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/test_tools.py",
+      "python": "${workspaceFolder}/../jollin-asistani/.venv/bin/python",
+      "cwd": "${workspaceFolder}",
+      "env": { "ORG_DEBUG": "${input:duraklar}" },
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Org: API sunucusu (debug, React arayüzü için)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "google.adk.cli",
+      // Arayüz http://localhost:5173'te çalışır; --allow_origins olmazsa tarayıcı 403 alır
+      "args": ["api_server", "--allow_origins=http://localhost:5173", "--port", "8000", "--no-reload", "."],
+      "python": "${workspaceFolder}/../jollin-asistani/.venv/bin/python",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Org: Modelsiz test (kota harcamaz)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/test_tools.py",
+      "python": "${workspaceFolder}/../jollin-asistani/.venv/bin/python",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Org: ADK Web (debug, hazır test arayüzü)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "google.adk.cli",
+      // Jollin projesiyle aynı port: ikisini aynı anda çalıştırma
+      "args": ["web", "--port", "8000", "--no-reload", "."],
+      "python": "${workspaceFolder}/../jollin-asistani/.venv/bin/python",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    }
+  ],
+  "inputs": [
+    {
+      "id": "duraklar",
+      "type": "pickString",
+      "description": "Hangi durak noktaları açık olsun? (liste ve açıklamalar: org_asistani/debug.py)",
+      "options": [
+        { "label": "2,3 · Yetki kontrolü (Ders 5: Selin → \"Satış ekibini listele\")", "value": "2,3" },
+        { "label": "5,6 · İnsan onayı + state (Ders 6: \"Emre'yi yapay zeka ekibine taşı\")", "value": "5,6" },
+        { "label": "7 · Deterministik geri alma (\"geri al\")", "value": "7" },
+        { "label": "8,9 · Talep onayı + kilit (\"#1 numaralı talebi onayla\")", "value": "8,9" },
+        { "label": "10,11,12 · Agent → agent (Ders 7: Deniz → \"...talep oluştur\", \"Gönder\")", "value": "10,11,12" },
+        { "label": "1,2 · Her turun ve her tool çağrısının başı (çok durur)", "value": "1,2" },
+        { "label": "hepsi", "value": "hepsi" }
+      ],
+      "default": "2,3"
+    }
+  ]
+}

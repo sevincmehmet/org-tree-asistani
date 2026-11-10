@@ -1,0 +1,23 @@
+# Gizli anahtarlar (örnek dosyalar repoya girsin)
+.env
+.env.*
+!.env.example
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# ADK yerel oturum veritabanı (sohbet geçmişi içerir)
+.adk/
+
+# Diğer
+.DS_Store
+node_modules/
+dist/
+
+# Kişisel / çalışma anında değişen dosyalar
+LINKEDIN.md
+talepler.json
+talepler.json.tmp
+.vscode/settings.json

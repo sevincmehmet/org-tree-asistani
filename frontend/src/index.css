@@ -1,0 +1,359 @@
+@import "tailwindcss";
+
+/*
+ * Tasarım dili: sakin nötr yüzeyler, ince çizgiler, tek sıcak vurgu rengi (mercan/turuncu).
+ * 8px ızgara · açık varsayılan · koyu = prefers-color-scheme ya da data-theme="dark".
+ */
+:root {
+  color-scheme: light;
+  --zemin: #f6f6f4;
+  --panel: #ffffff;
+  --panel-2: #fafaf8;
+  --hover: #f1f1ee;
+  --cizgi: #e7e6e2;
+  --cizgi-guclu: #d5d3ce;
+  --metin: #1b1a18;
+  --metin-2: #45423d;
+  --soluk: #74706a;
+  --vurgu: #d4501f;
+  --vurgu-acik: #fdf0ea;
+  --vurgu-metin: #ffffff;
+  --basari: #157f3d;
+  --basari-acik: #e9f6ee;
+  --tehlike: #c42b2b;
+  --tehlike-acik: #fdeeee;
+  --uyari: #9a5b06;
+  --uyari-acik: #fdf4e2;
+  --notr-acik: #f0efec;
+  --lca: #7c3aed;
+  --bilgi: #2563eb;
+  --bilgi-acik: #eaf1fe;
+  --golge: 0 1px 2px rgb(24 22 18 / 0.05), 0 1px 3px rgb(24 22 18 / 0.04);
+  --golge-buyuk: 0 16px 40px -12px rgb(24 22 18 / 0.22), 0 4px 10px -2px rgb(24 22 18 / 0.06);
+  --nokta: #dddbd6;
+  --adim-mesaj: #0ea5e9;
+  --adim-karar: #8b5cf6;
+  --adim-onay: #f59e0b;
+  --adim-red: #e11d48;
+  --adim-sonuc: #10b981;
+  --adim-cevap: #d4501f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --zemin: #0f0f11;
+    --panel: #161618;
+    --panel-2: #1b1b1e;
+    --hover: #232327;
+    --cizgi: #2a2a2f;
+    --cizgi-guclu: #3b3b42;
+    --metin: #ededf0;
+    --metin-2: #c8c8ce;
+    --soluk: #93939c;
+    --vurgu: #ff8155;
+    --vurgu-acik: #2f1d16;
+    --vurgu-metin: #1a0c06;
+    --basari: #4ade80;
+    --basari-acik: #12261a;
+    --tehlike: #f87171;
+    --tehlike-acik: #2d1717;
+    --uyari: #fbbf24;
+    --uyari-acik: #2b2310;
+    --notr-acik: #202024;
+    --lca: #b79cff;
+    --bilgi: #60a5fa;
+    --bilgi-acik: #142035;
+    --golge: 0 1px 2px rgb(0 0 0 / 0.4);
+    --golge-buyuk: 0 20px 48px -12px rgb(0 0 0 / 0.6), 0 4px 12px rgb(0 0 0 / 0.3);
+    --nokta: #26262b;
+    --adim-cevap: #ff8155;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --zemin: #0f0f11;
+  --panel: #161618;
+  --panel-2: #1b1b1e;
+  --hover: #232327;
+  --cizgi: #2a2a2f;
+  --cizgi-guclu: #3b3b42;
+  --metin: #ededf0;
+  --metin-2: #c8c8ce;
+  --soluk: #93939c;
+  --vurgu: #ff8155;
+  --vurgu-acik: #2f1d16;
+  --vurgu-metin: #1a0c06;
+  --basari: #4ade80;
+  --basari-acik: #12261a;
+  --tehlike: #f87171;
+  --tehlike-acik: #2d1717;
+  --uyari: #fbbf24;
+  --uyari-acik: #2b2310;
+  --notr-acik: #202024;
+  --lca: #b79cff;
+  --bilgi: #60a5fa;
+  --bilgi-acik: #142035;
+  --golge: 0 1px 2px rgb(0 0 0 / 0.4);
+  --golge-buyuk: 0 20px 48px -12px rgb(0 0 0 / 0.6), 0 4px 12px rgb(0 0 0 / 0.3);
+  --nokta: #26262b;
+  --adim-cevap: #ff8155;
+}
+
+@theme inline {
+  --color-zemin: var(--zemin);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-hover: var(--hover);
+  --color-cizgi: var(--cizgi);
+  --color-cizgi-guclu: var(--cizgi-guclu);
+  --color-metin: var(--metin);
+  --color-metin-2: var(--metin-2);
+  --color-soluk: var(--soluk);
+  --color-vurgu: var(--vurgu);
+  --color-vurgu-acik: var(--vurgu-acik);
+  --color-vurgu-metin: var(--vurgu-metin);
+  --color-basari: var(--basari);
+  --color-basari-acik: var(--basari-acik);
+  --color-tehlike: var(--tehlike);
+  --color-tehlike-acik: var(--tehlike-acik);
+  --color-uyari: var(--uyari);
+  --color-uyari-acik: var(--uyari-acik);
+  --color-notr-acik: var(--notr-acik);
+  --color-lca: var(--lca);
+  --color-bilgi: var(--bilgi);
+  --color-bilgi-acik: var(--bilgi-acik);
+  --shadow-yumusak: var(--golge);
+  --shadow-buyuk: var(--golge-buyuk);
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+@layer base {
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--zemin);
+  color: var(--metin);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  font-feature-settings: "cv11", "ss01", "ss03";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+:focus-visible {
+  outline: 2px solid var(--vurgu);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--vurgu) 22%, transparent);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--cizgi-guclu) transparent;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+}
+
+@layer components {
+/* ---- Küçük bileşen sınıfları ---- */
+.kart {
+  background: var(--panel);
+  border: 1px solid var(--cizgi);
+  border-radius: 14px;
+  box-shadow: var(--golge);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 550;
+  white-space: nowrap;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s,
+    color 0.15s,
+    box-shadow 0.15s;
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.btn-sm {
+  height: 28px;
+  padding: 0 10px;
+  font-size: 12.5px;
+}
+.btn-birincil {
+  background: var(--vurgu);
+  color: var(--vurgu-metin);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.15), 0 1px 2px rgb(0 0 0 / 0.12);
+}
+.btn-birincil:not(:disabled):hover {
+  background: color-mix(in srgb, var(--vurgu) 88%, black);
+}
+.btn-ikincil {
+  background: var(--panel);
+  color: var(--metin);
+  border: 1px solid var(--cizgi);
+  box-shadow: var(--golge);
+}
+.btn-ikincil:not(:disabled):hover {
+  background: var(--hover);
+  border-color: var(--cizgi-guclu);
+}
+.btn-hayalet {
+  color: var(--soluk);
+}
+.btn-hayalet:not(:disabled):hover {
+  background: var(--hover);
+  color: var(--metin);
+}
+.btn-ikon {
+  width: 32px;
+  padding: 0;
+}
+
+/* Segment kontrol (sekmeler, agent seçici) */
+.segment {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 10px;
+  background: var(--notr-acik);
+}
+.segment > button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 7px;
+  font-size: 13px;
+  font-weight: 550;
+  color: var(--soluk);
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+.segment > button:not(:disabled):hover {
+  color: var(--metin);
+}
+.segment > button[aria-checked="true"],
+.segment > button[aria-selected="true"],
+.segment > button[aria-pressed="true"] {
+  color: var(--metin);
+}
+.segment-zemin {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 7px;
+  background: var(--panel);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.08), 0 0 0 1px var(--cizgi);
+}
+
+.cip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 20px;
+  padding: 0 8px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 550;
+  white-space: nowrap;
+}
+
+.girdi {
+  height: 36px;
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid var(--cizgi);
+  background: var(--panel);
+  padding: 0 12px;
+  font-size: 14px;
+  color: var(--metin);
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+.girdi::placeholder {
+  color: var(--soluk);
+}
+.girdi:focus {
+  outline: none;
+  border-color: color-mix(in srgb, var(--vurgu) 60%, var(--cizgi));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--vurgu) 16%, transparent);
+}
+
+.baslik-kucuk {
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--soluk);
+}
+
+}
+
+@keyframes yanip-son {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.imlec > div > :last-child::after {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 14px;
+  margin-left: 3px;
+  vertical-align: -2px;
+  border-radius: 2px;
+  background: var(--vurgu);
+  animation: yanip-son 1s infinite;
+}
+
+.agac-dugum:focus-visible {
+  outline: none;
+}
+.agac-dugum:focus-visible .odak-halka {
+  opacity: 1;
+}
